@@ -107,12 +107,12 @@
       }
     },
     methods: {
-        //选择视频，打开窗口
+      //选择视频，打开窗口
       choosevideo(data){
-          //得到当前的课程计划
-          this.teachplanId = data.id
+        //得到当前的课程计划
+        this.teachplanId = data.id
 //        alert(this.teachplanId)
-          this.mediaFormVisible = true;//打开窗口
+        this.mediaFormVisible = true;//打开窗口
       },
       //保存选择的视频
       choosemedia(mediaId,fileOriginalName,mediaUrl){
@@ -126,37 +126,37 @@
         teachplanMedia.teachplanId=this.teachplanId
 
         courseApi.savemedia(teachplanMedia).then(res=>{
-            if(res.success){
-                this.$message.success("选择视频成功")
-              //查询课程计划
-              this.findTeachplan()
-            }else{
-              this.$message.error(res.message)
-            }
+          if(res.success){
+            this.$message.success("选择视频成功")
+            //查询课程计划
+            this.findTeachplan()
+          }else{
+            this.$message.error(res.message)
+          }
         })
       },
       //提交课程计划
       addTeachplan(){
         //校验表单
         this.$refs.teachplanForm.validate((valid) => {
-            if (valid) {
-                //调用api方法
-              //将课程id设置到teachplanActive
-              this.teachplanActive.courseid = this.courseid
-              courseApi.addTeachplan(this.teachplanActive).then(res=>{
-                if(res.success){
-                    this.$message.success("添加成功")
-                    //刷新树
-                    this.findTeachplan()
-                }else{
-                  this.$message.error(res.message)
-                }
+          if (valid) {
+            //调用api方法
+            //将课程id设置到teachplanActive
+            this.teachplanActive.courseid = this.courseid
+            courseApi.addTeachplan(this.teachplanActive).then(res=>{
+              if(res.success){
+                this.$message.success("添加成功")
+                //刷新树
+                this.findTeachplan()
+              }else{
+                this.$message.error(res.message)
+              }
 
-              })
-            }
+            })
+          }
         })
       },
-  //重置表单
+      //重置表单
       resetForm(){
         this.teachplanActive = {}
       },
@@ -186,7 +186,7 @@
               <span>{node.label}</span>
             </span>
             <span>
-              <el-button style="font-size: 12px;" type="text" on-click={ () => this.choosevideo(data) }>{data.mediaFileOriginalName}&nbsp;&nbsp;&nbsp;&nbsp; 选择视频</el-button>
+              <el-button style="font-size: 12px;" type="text" on-click={ () => this.choosevideo(data) }>{data.mediaFileoriginalname}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 选择视频</el-button>
               <el-button style="font-size: 12px;" type="text" on-click={ () => this.edit(data) }>修改</el-button>
               <el-button style="font-size: 12px;" type="text" on-click={ () => this.remove(node, data) }>删除</el-button>
             </span>
@@ -196,9 +196,9 @@
         this.teachplanList = []
         //查询课程计划
         courseApi.findTeachplanList(this.courseid).then(res=>{
-            if(res && res.children){
-              this.teachplanList = res.children;
-            }
+          if(res && res.children){
+            this.teachplanList = res.children;
+          }
 
 
         })
